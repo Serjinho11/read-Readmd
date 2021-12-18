@@ -36,7 +36,7 @@
   - inregistreaza pe server(glassfish) niste URL-uri, iar daca cineva le apeleaza, se raspunde cu ceva
   - se foloseste de EJB pentru a comunica cu baza de date
   - am definit "aplicatia" LabRestApplication
-  - am creat clasa RestProduct, in care am niste metode(de ex. **getList, updateProduct, filter**) care se folosesc de metodele din clasa ProductEjb pentru a expune datele celor care vor sa le consume 
+  - am creat clasa RestProduct, in care am niste metode(de ex. **getList, updateProduct, filter**) care se folosesc de metodele din clasa ProductEjb pentru a expune metodele celor care vor sa le consume 
 
 # 3. Frontend 
   - preia datele de la REST, si le afiseaza
