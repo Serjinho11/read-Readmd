@@ -41,6 +41,7 @@
 # 3. Frontend 
   - preia datele de la REST, si le afiseaza
   - gestioneaza interactiunile cu utilizatorul
+  - clasa ProductDto reprezinta materializarea datelor obtinute de la serviciul web obiecte java
 
 
 
