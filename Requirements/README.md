@@ -1,51 +1,56 @@
-# Terra
+# Caesar’s Cipher
 
-## Exercise 1 - Equality Tests
+## The Setup
 
-- Uncomment the `EqualityTests` class. (Ctrl+A, Ctrl+K, Ctrl+U)
-- Run the tests and update the `Country` class to pass them.
+Let's have the following three applications:
 
-**Note:** You are not allowed to change the existing tests.
+- **Data Generator**
+  - Sends encrypted text over a TCP connection.
+  - The algorithm used for encryption is Caesar's Cipher.
+- **Data Decryptor**
+  - Receives the encrypted text, decrypts it and sends it further, over TCP, to the Data Receiver.
+- **Data Receiver**
+  - Displays the text received over the TCP connection.
 
-## Exercise 2 - Comparable Tests
 
-- Uncomment the `ComparableTests` class. (Ctrl+A, Ctrl+K, Ctrl+U)
-- Run the tests and update the `Country` class to pass them.
 
-## Exercise 3 - Enumerable Tests (Default Sorting)
+![Overview](caesar-cypher-overview.drawio.png)
 
-- Uncomment the `EnumerateCountriesTests` class. (Ctrl+A, Ctrl+K, Ctrl+U)
-- If the first two steps are done correctly, these tests should be green.
 
-## Exercise 4 - Extend Sorting
 
-Now, imagine that the `Terra` project is a third party library and you don't have access to its source code. From this point forward you are not allowed to modify anything from the `Terra` project.
+## Requirement
 
-### Add `TerraPlus` project
+Your job is to create the Data Decryptor application. The middle one.
 
-In the same directory there is a `TerraPlus` project. Include it in the solution. (Right click on the Solution -> Add -> Existing Project...) Make sure it compiles successfully. This is your new project and it uses the third-party `Terra` project.
+The other two applications (Data Generator and Data Receiver) are already implemented. They will be provided to you.
 
-There is also a `TerraPlus.Tests` project. Include this one in the solution, too.
+The address and port on which to listen for incoming requests and the address and port where to send the decrypted text must be configurable in the configuration file.
 
-> **Note:**
->
-> - Usually, a third-party library will be provided as a binary .dll file that must be included in the project. For this exercise, in order to keep things simple, we will reference the so called third-party project from the same Visual Studio solution and pretend that we do not have access to its source code.
+## Encryption Algorithm (Caesar's Cipher)
 
-### Sort by Capital
+The encryption is performed using the Caesar's Cipher, with a right shift of 1.
 
-Your task is to sort the countries by capital.
+- a --> b
 
-In the `TerraPlus` project there is the `ContinentPlus` class having the `EnumerateCountriesByCapital` method. Implement this method so that it will return the countries sorted by Capital (as the name suggests).
+- b --> c
 
-Remember, you are not allowed to change the `Country` class.
+- ...
+- y --> z
+- z --> a
 
-How many solutions can you find?
+The letter's case is preserved:
 
-# Visual Studio Shortcuts
+- If letter was lower case before encryption, it will be a lower case letter after decryption.
+- If letter was upper case before encryption, it will be a upper case letter after decryption.
 
-| Shortcut       | Description                  |
-| -------------- | ---------------------------- |
-| Ctrl+A         | Select all code in the file. |
-| Ctrl+K, Ctrl+C | Comment the selected code    |
-| Ctrl+K, Ctrl+U | Uncomment the selected code  |
+Only letters are encrypted/decrypted. Other characters are left untouched.
 
+More details about the algorithm can be found on Wikipedia:
+
+- https://en.wikipedia.org/wiki/Caesar_cipher
+
+## Hints
+
+.NET has a `Socket` class to deal with socket communication. It can handle multiple protocols: UDP, TCP, etc.
+
+In our exercise we use TCP/IP. To easily interact with this protocol, .NET provides two classes: `TcpClient` and `TcpListener`. Internally, they use `Socket` instances.
